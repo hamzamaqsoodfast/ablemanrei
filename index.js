@@ -33,7 +33,7 @@ app.post('/sendToMonday', async (req, res) => {
   }
 
   const mondayToken = 'eyJhbGciOiJIUzI1NiJ9.eyJ0aWQiOjQzMTQ5MDY2OCwiYWFpIjoxMSwidWlkIjo2NzgyNDc3MywiaWFkIjoiMjAyNC0xMS0wM1QxMDo0OToyMi4wMDBaIiwicGVyIjoibWU6d3JpdGUiLCJhY3RpZCI6MTQ5NDQ5MTQsInJnbiI6InVzZTEifQ.M2y5qvKTBugSmKQLJnPFinl9o1h0H70yCAVnsM75p0M';
-  const boardId = '7764884262';
+  const boardId = '7789594745';
   const groupId = 'topics';
 
   const columnValues = JSON.stringify({

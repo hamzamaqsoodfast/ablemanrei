@@ -24,21 +24,24 @@ app.post('/sendToMonday', async (req, res) => {
 
   // Prepare column values, including the new date field
   const columnValues = JSON.stringify({
-    "short_text": fullAddress || "",            // Full Address
-    "short_text__1": propertyType,             // Type of Property
-    "state__1": state || "",                   // State
-    "short_text8": sellerName || "",           // Seller Name
-    "number": (sellerPhone || "").toString(),  // Seller Phone as a string
-    "email": {                                 // Email field
-      "email": email || "",
-      "text": email || ""
-    },
-    "number9": (closingTime || "").toString(), // Closing Time as a string
-    "number0": (askingPrice || "").toString(), // Asking Price as a string
-    "single_select7": isNegotiable || "",      // Is it negotiable?
-    "long_text": conditionNotes || "",         // Condition/Notes
-    "date": contactDate || ""                  // Contact Date (new field)
-  });
+  "short_text": fullAddress || "",           // Full Address
+  "short_text__1": propertyType,             // Type of Property
+  "state__1": state || "",                   // State
+  "short_text8": sellerName || "",           // Seller Name
+  "number": (sellerPhone || "").toString(),  // Seller Phone as a string
+  "email": {                                 // Email field
+    "email": email || "",
+    "text": email || ""
+  },
+  "number9": (closingTime || "").toString(), // Closing Time as a string
+  "number0": (askingPrice || "").toString(), // Asking Price as a string
+  "single_select7": isNegotiable || "",      // Is it negotiable?
+  "long_text": conditionNotes || "",         // Condition/Notes
+  "date": {                                  // Date column for "When would you like us to contact you?"
+    "date": new Date(contactDate).toISOString().split('T')[0]
+  }
+});
+
 
   const query = `
     mutation ($boardId: ID!, $groupId: String!, $itemName: String!, $columnValues: JSON!) {

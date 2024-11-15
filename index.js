@@ -14,18 +14,18 @@ app.post('/sendToMonday', async (req, res) => {
     closingTime, 
     askingPrice, 
     isNegotiable, 
-    conditionNotes 
+    conditionNotes, 
+    contactDate // New field for date
   } = req.body;
-
-  
 
   const mondayToken = 'eyJhbGciOiJIUzI1NiJ9.eyJ0aWQiOjQzMTQ5MDY2OCwiYWFpIjoxMSwidWlkIjo2NzgyNDc3MywiaWFkIjoiMjAyNC0xMS0wM1QxMDo0OToyMi4wMDBaIiwicGVyIjoibWU6d3JpdGUiLCJhY3RpZCI6MTQ5NDQ5MTQsInJnbiI6InVzZTEifQ.M2y5qvKTBugSmKQLJnPFinl9o1h0H70yCAVnsM75p0M';
   const boardId = '7789594745';
   const groupId = 'topics';
 
+  // Prepare column values, including the new date field
   const columnValues = JSON.stringify({
-    "short_text": fullAddress || "",           // Full Address
-    "short_text__1": propertyType,     // Type of Property (mapped value)
+    "short_text": fullAddress || "",            // Full Address
+    "short_text__1": propertyType,             // Type of Property
     "state__1": state || "",                   // State
     "short_text8": sellerName || "",           // Seller Name
     "number": (sellerPhone || "").toString(),  // Seller Phone as a string
@@ -36,7 +36,8 @@ app.post('/sendToMonday', async (req, res) => {
     "number9": (closingTime || "").toString(), // Closing Time as a string
     "number0": (askingPrice || "").toString(), // Asking Price as a string
     "single_select7": isNegotiable || "",      // Is it negotiable?
-    "long_text": conditionNotes || ""          // Condition/Notes
+    "long_text": conditionNotes || "",         // Condition/Notes
+    "date": contactDate || ""                  // Contact Date (new field)
   });
 
   const query = `

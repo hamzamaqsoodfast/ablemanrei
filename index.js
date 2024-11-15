@@ -17,20 +17,7 @@ app.post('/sendToMonday', async (req, res) => {
     conditionNotes 
   } = req.body;
 
-  const propertyTypeMap = {
-    "Multifamily House": "Multifamily House",
-    "Single Family House": "Single Family House",
-    "Land": "Land",
-    "Commercial/Industrial": "Commercial/Industrial"
-  };
-
-  const mappedPropertyType = propertyTypeMap[propertyType] || null;
-  if (!mappedPropertyType) {
-    return res.status(400).json({
-      success: false,
-      error: `Invalid property type. Allowed values are: ${Object.keys(propertyTypeMap).join(', ')}`
-    });
-  }
+  
 
   const mondayToken = 'eyJhbGciOiJIUzI1NiJ9.eyJ0aWQiOjQzMTQ5MDY2OCwiYWFpIjoxMSwidWlkIjo2NzgyNDc3MywiaWFkIjoiMjAyNC0xMS0wM1QxMDo0OToyMi4wMDBaIiwicGVyIjoibWU6d3JpdGUiLCJhY3RpZCI6MTQ5NDQ5MTQsInJnbiI6InVzZTEifQ.M2y5qvKTBugSmKQLJnPFinl9o1h0H70yCAVnsM75p0M';
   const boardId = '7789594745';
@@ -38,7 +25,7 @@ app.post('/sendToMonday', async (req, res) => {
 
   const columnValues = JSON.stringify({
     "short_text": fullAddress || "",           // Full Address
-    "single_select__1": mappedPropertyType,     // Type of Property (mapped value)
+    "short_text__1": propertyType,     // Type of Property (mapped value)
     "state__1": state || "",                   // State
     "short_text8": sellerName || "",           // Seller Name
     "number": (sellerPhone || "").toString(),  // Seller Phone as a string
